@@ -1,0 +1,31 @@
+ <div class="nav">
+  <div class="logo">
+    <button mat-icon-button>CCC</button>
+  </div>
+  <div >
+    <button mat-flat-button class="home" >Home</button>
+  </div>
+  <div class="notifications">
+    <button mat-icon-button [matMenuTriggerFor]="notifMenu"><img src="./assets/bell.png" style="width:22px;"></button>
+  </div>
+  <div >
+    <button mat-icon-button [matMenuTriggerFor]="appMenu"><img [src]= " user ? user.profileImg :'./assets/user.png' " style="width:38px;border-radius:50%;"></button>
+  </div>
+</div>
+
+
+
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item (click)="logout()" *ngIf="user">SignOut</button>
+  <button mat-menu-item>Help</button>
+</mat-menu>
+
+<mat-menu #notifMenu="matMenu">
+  <button mat-menu-item *ngFor="let challenger of socketservice.notifications">hello {{challenger}}</button> 
+</mat-menu>
+
+<div class="SignInOptions" *ngIf=false>
+<button mat-raised-button (click)="loginWithGoogle()" *ngIf='!user'><span><img src= "./assets/search.png"  style="width:15px;"></span>Sign in</button>
+</div> 
+
+<router-outlet></router-outlet>

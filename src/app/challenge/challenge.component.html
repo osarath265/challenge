@@ -1,0 +1,56 @@
+<button (click)="assignUser(0)">User 1</button>
+<button (click)="assignUser(1)">User 2</button>
+<button (click)="assignUser(2)">User 3</button>
+
+
+<div class="searchopponent" *ngIf="!challengeOn">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>id</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} <button (click)="challengeFriend(element)" mat-raised-button style="margin-left:100px;">challenge</button> </td>
+    </ng-container>
+
+    <!-- Weight Column
+    <ng-container matColumnDef="points">
+        <th mat-header-cell *matHeaderCellDef> Points</th>
+        <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+    </ng-container> -->
+
+    
+       
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+<div *ngIf="challengeOn" >
+    <mat-card class="example-card" >
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content>
+    </mat-card>
+
+</div>
